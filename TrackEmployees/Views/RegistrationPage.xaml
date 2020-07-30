@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                xmlns:behavior="clr-namespace:TrackEmployees.Behavior"  NavigationPage.HasNavigationBar="false"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TrackEmployees.Views.RegistrationPage">
+    <ContentPage.Content>
+
+          <AbsoluteLayout>
+              <AbsoluteLayout.Margin>
+       <OnPlatform x:TypeArguments="Thickness">
+       <On Platform="iOS" Value="0,80,0,0" />
+       <On Platform="Android, WinPhone, Windows" Value="0,0,0,0" />
+       </OnPlatform>
+  </AbsoluteLayout.Margin>
+              <ScrollView>
+        <Grid AbsoluteLayout.LayoutFlags="All"
+              AbsoluteLayout.LayoutBounds="0,1,1,1">
+
+
+              <Grid BackgroundColor="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="5"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Margin="0,0,0,0" Grid.Row="0">
+             
+                </StackLayout>
+            <Grid RowSpacing="15" Grid.Row="1" Margin="20,0,20,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                   <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+            
+
+                <StackLayout Grid.Row="1">  
+                    <Entry x:Name="Email" Text="{Binding Employees.EmailID}" Placeholder="Email"   
+                           PlaceholderColor="Gray" HeightRequest="40"   
+                           Keyboard="Email"  
+                           TextColor="Black">
+
+                           <Entry.Behaviors>
+                            <behavior:EmailValidatorBehavior />
+                         </Entry.Behaviors>
+                    </Entry>
+                     <Label x:Name="Employees_EmailIDError" IsVisible="False" TextColor="Red" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="2">  
+                    <Entry x:Name="Password" Text="{Binding Employees.Password}" Placeholder="Password"   
+                           PlaceholderColor="Gray" HeightRequest="40"   
+                           IsPassword="True"  
+                           TextColor="Black"/>
+                    <Label x:Name="Employees_PasswordError" IsVisible="False" TextColor="Red" />
+                        </StackLayout>
+                    <StackLayout Grid.Row="3"> 
+                     <Entry x:Name="RePassword"  Placeholder="Re Password"   
+                           PlaceholderColor="Gray" HeightRequest="40"   
+                           IsPassword="True"  Text="{Binding Employees.RePassword}"
+                           TextColor="Black">
+
+                         <Entry.Behaviors>
+                            <behavior:ConfirmPasswordBehavior x:Name="confirmPasswordBehavior" CompareToEntry="{Binding Source={x:Reference Password}}" />
+                         </Entry.Behaviors>
+                     </Entry>
+                    <Label x:Name="Employees_RePasswordError" IsVisible="False" TextColor="Red" />
+                         </StackLayout>
+                    <StackLayout Grid.Row="4"> 
+                       <Entry x:Name="FirstName" Text="{Binding Employees.FirstName}" Placeholder="First Name"   
+                           PlaceholderColor="Gray" HeightRequest="40"   
+                        
+                           TextColor="Black"/>
+                    <Label x:Name="FirstName_FirstNameError" IsVisible="False" TextColor="Red" />
+                         </StackLayout>
+                    <StackLayout Grid.Row="5">
+
+                       <Entry x:Name="LastName" Text="{Binding Employees.LastName}" Placeholder="Last Name"   
+                           PlaceholderColor="Gray" HeightRequest="40"   
+                          
+                           TextColor="Black"/>
+                    <Label x:Name="Employees_LastNameError" IsVisible="False" TextColor="Red" />
+                         </StackLayout>
+                    <StackLayout Grid.Row="6"> 
+                       <Entry x:Name="Phone" Text="{Binding Employees.Phone}" Placeholder="Phone"   
+                           PlaceholderColor="Gray" HeightRequest="40"   Keyboard="Telephone"
+                          
+                           TextColor="Black"/>
+                    <Label x:Name="Employees_PhoneError" IsVisible="False" TextColor="Red" />
+                         </StackLayout>
+                    <!--<StackLayout Grid.Row="7"> 
+                     <StackLayout Orientation="Horizontal">
+            <Switch IsToggled="{Binding Employees.IsEmp1}" HorizontalOptions="Start" />
+            <Label Text="Is Emp" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center"/>
+        </StackLayout>
+                    <StackLayout Grid.Row="8"> 
+                     <StackLayout Orientation="Horizontal">
+            <Switch IsToggled="{Binding Employees.IsEmp2}" HorizontalOptions="Start" />
+            <Label Text="Is Emp" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center"/>
+        </StackLayout> </StackLayout>
+                    <StackLayout Grid.Row="9"> 
+                     <StackLayout Orientation="Horizontal">
+            <Switch IsToggled="{Binding Employees.IsSupport}" HorizontalOptions="Start" />
+            <Label Text="Is Support" HorizontalOptions="FillAndExpand" VerticalTextAlignment="Center"/>
+        </StackLayout>
+                         </StackLayout>
+   
+                  <Label Text="{Binding StatusMassege}"  TextColor="{Binding Errorcolor}" ></Label>
+               </StackLayout>-->  
+
+
+
+        
+        </Grid>
+                   <StackLayout Grid.Row="2" BackgroundColor="#ffffff">
+                              
+    <Button Command="{Binding RegisterCommand}"  Text="Register " TextColor="White"  
+                  HorizontalOptions="FillAndExpand"  
+                  BackgroundColor="#3897f0" />
+    </StackLayout>
+                  </Grid>
+            <ActivityIndicator  IsRunning="{Binding IsBusy}" IsVisible="{Binding IsBusy}" Color="CornflowerBlue" VerticalOptions="Center"
+                               HorizontalOptions="Center" HeightRequest="80" WidthRequest="80"
+                               AbsoluteLayout.LayoutFlags="PositionProportional"
+                               AbsoluteLayout.LayoutBounds="0.5,0.5,-1,-1" />
+        </Grid>
+                  </ScrollView>
+    </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:behaviors="clr-namespace:TrackEmployees.Behavior"
+             xmlns:maps="clr-namespace:TrackEmployees.Controls"
+              NavigationPage.HasNavigationBar="false"
+        
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="TrackEmployees.Views.HomePage">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+               <AbsoluteLayout.Margin>
+       <OnPlatform x:TypeArguments="Thickness">
+       <On Platform="iOS" Value="0,60,0,0" />
+       <On Platform="Android, WinPhone, Windows" Value="0,0,0,0" />
+       </OnPlatform>
+  </AbsoluteLayout.Margin>
+        
+            <maps:CustomMap x:Name="map" AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" >
+             <maps:CustomMap.Behaviors>
+                <behaviors:MapBehavior ItemsSource="{Binding Employees}" />
+            </maps:CustomMap.Behaviors>
+        </maps:CustomMap>
+               <ImageButton Source="refresh"    BackgroundColor="Transparent"  Command="{Binding RefreshCommand}" AbsoluteLayout.LayoutBounds="340,20, 40,40" AbsoluteLayout.LayoutFlags="None"></ImageButton>
+            <StackLayout Orientation="Horizontal" AbsoluteLayout.LayoutBounds="15,20,385,38" AbsoluteLayout.LayoutFlags="None" Margin="0,0,120,0">
+              
+          <SearchBar  BackgroundColor="#f9f9f9"    Grid.Column="0" TextColor="#FF464859" FontSize="16"  Placeholder="Travelling ??  " PlaceholderColor="Black" x:Name="searchBar"  SearchButtonPressed="OnSearchBarButtonPressed" ></SearchBar>
+              </StackLayout>
+        <ListView x:Name="countryListView"  IsVisible="False"   CachingStrategy="RecycleElement" BackgroundColor="White" AbsoluteLayout.LayoutBounds="20,50, 269,160" AbsoluteLayout.LayoutFlags="None">  
+            <ListView.ItemTemplate>  
+                <DataTemplate>  
+                    <ViewCell>  
+                                <Label Text="{Binding .}" FontSize="16" TextColor="Black"/>  
+                             
+                    </ViewCell>  
+                </DataTemplate>  
+            </ListView.ItemTemplate>  
+        </ListView>
+          
+          
+    </AbsoluteLayout>  
+       
+       
+    </ContentPage.Content>
+</ContentPage>
